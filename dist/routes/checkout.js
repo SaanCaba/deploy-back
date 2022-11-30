@@ -26,7 +26,9 @@ router.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         return res.send({ message: 'Pago realizado con éxito!' });
     }
     catch (error) {
-        console.log(error);
+        return res.json({
+            message: error.raw.message
+        });
     }
 }));
 module.exports = router;
