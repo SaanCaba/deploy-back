@@ -1,4 +1,5 @@
 require('dotenv').config()
+import {Request, Response } from "express"
 const express = require('express')
 const app = express()
 const cors = require('cors')
@@ -10,6 +11,7 @@ const authRoutes = require('./routes/auth')
 const authRouteG = require("./routes/authPs");
 const checkout = require("./routes/checkout")
 const passportStrategy = require("./passport");
+const router = require("express").Router();
 
 
 connection()
@@ -46,6 +48,10 @@ app.use("/api/users", userRoutes)
 app.use("/api/auth", authRoutes)
 app.use("/auth", authRouteG);
 app.use("/checkout", checkout)
+
+router.get('/', (req: Request,res: Response) => {
+	return res.send('hola')
+})
 
 const port = process.env.PORT || 8080
 
