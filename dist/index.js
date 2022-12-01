@@ -24,14 +24,25 @@ app.use(passport.session());
 //middlewares
 app.use(express.json());
 app.use(cors({
-    origin: process.env.URL || "http://localhost:3000",
+    origin: process.env.URL,
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
 }));
+app.use(function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+    if ('OPTIONS' === req.method) {
+        res.send(200);
+    }
+    else {
+        next();
+    }
+});
 // routes
+app.use("/auth", authRouteG);
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
-app.use("/auth", authRouteG);
 app.use("/checkout", checkout);
 const port = process.env.PORT || 8080;
 app.listen(port, () => console.log('Server run on port esooo' + port));
