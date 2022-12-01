@@ -12,6 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const router = require('express').Router();
 const Stripe = require('stripe');
 const stripe = new Stripe(process.env.STRIPEPSS);
+router.get('/', (req, res) => {
+    return res.send('hollaa');
+});
 router.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id, amount } = req.body;
     try {

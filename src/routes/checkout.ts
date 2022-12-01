@@ -4,6 +4,9 @@ const Stripe = require('stripe')
 
 const stripe = new Stripe(process.env.STRIPEPSS)
 
+router.get('/', (req: Request,res:Response ) => {
+    return res.send('hollaa')
+} )
 
 router.post('/', async (req: Request,res:Response )=> {
     const {id, amount} = req.body
