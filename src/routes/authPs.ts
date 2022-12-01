@@ -6,32 +6,38 @@ const User = require('../models/user')
 const mongoose = require('mongoose')
 
 router.get("/login/success", async(req: any, res: Response) => {
-    console.log(req.body)
-    if (req.user) {
-		res.status(200).json({
-			error: false,
-			message: "Successfully Loged In",
-			user: req.user,
-			token: generateAuthToken()
-		});
-        console.log(req.user._json)
+   return res.status(200).json({
+        		error: false,
+        		message: "Successfully Loged In",
+        		user: req,
+        		token: generateAuthToken()
+        	});
+    // console.log(req.body)
+    // if (req.user) {
+	// 	res.status(200).json({
+	// 		error: false,
+	// 		message: "Successfully Loged In",
+	// 		user: req.user,
+	// 		token: generateAuthToken()
+	// 	});
+    //     console.log(req.user._json)
 
-        const user = await User.findOne({email: req.user._json.email})
+    //     const user = await User.findOne({email: req.user._json.email})
         
-        if(!user){
-            console.log('entre')
-            await new User({
-                firstName: req.user._json.firstName || req.user._json.given_name,
-                lastName: req.user._json.lastName || req.user._json.family_name,
-                email:req.user._json.email
-            }).save()
-            console.log('creado')
-        }
-        console.log('opa')
+    //     if(!user){
+    //         console.log('entre')
+    //         await new User({
+    //             firstName: req.user._json.firstName || req.user._json.given_name,
+    //             lastName: req.user._json.lastName || req.user._json.family_name,
+    //             email:req.user._json.email
+    //         }).save()
+    //         console.log('creado')
+    //     }
+    //     console.log('opa')
         
-	} else {
-		res.status(405).json({ error: true, message: "Not Authorized" });
-	}
+	// } else {
+	// 	res.status(405).json({ error: true, message: "Not Authorized" });
+	// }
 });
 
 router.get("/login/failed", (req: Request, res: Response) => {
