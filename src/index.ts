@@ -49,9 +49,6 @@ app.use("/api/auth", authRoutes)
 app.use("/auth", authRouteG);
 app.use("/checkout", checkout)
 
-router.get('/', (req: Request,res: Response) => {
-	return res.send('hola')
-})
 
 const port = process.env.PORT || 8080
 

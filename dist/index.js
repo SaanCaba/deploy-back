@@ -33,8 +33,5 @@ app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/auth", authRouteG);
 app.use("/checkout", checkout);
-router.get('/', (req, res) => {
-    return res.send('hola');
-});
 const port = process.env.PORT || 8080;
 app.listen(port, () => console.log('Server run on port esooo' + port));
