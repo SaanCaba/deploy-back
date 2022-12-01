@@ -4,10 +4,8 @@ const generateAuthToken = require('./utils')
 import {Request, Response } from "express"
 const User = require('../models/user')
 const mongoose = require('mongoose')
-const userInfo = require('../passport')
 
 router.get("/login/success", async(req: any, res: Response) => {
-    console.log(userInfo)
     if (req.user) {
 		res.status(200).json({
 			error: false,
@@ -47,7 +45,7 @@ router.get("/google", cor_passport.authenticate("google", ["profile", "email"]))
 router.get(
 	"/google/callback",
 	cor_passport.authenticate("google", {
-		successRedirect: process.env.CLIENT_URL,
+		successRedirect: process.env.URL,
 		failureRedirect: "/login/failed",
 	})
 );

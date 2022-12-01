@@ -20,7 +20,6 @@ co_passport.use(new GoogleStrategy({
     return __awaiter(this, void 0, void 0, function* () {
         yield callback(null, profile);
         console.log(profile);
-        user = profile;
     });
 }));
 co_passport.serializeUser((user, done) => __awaiter(void 0, void 0, void 0, function* () {
@@ -29,4 +28,3 @@ co_passport.serializeUser((user, done) => __awaiter(void 0, void 0, void 0, func
 co_passport.deserializeUser((user, done) => __awaiter(void 0, void 0, void 0, function* () {
     yield done(null, user);
 }));
-module.exports = user;

@@ -14,9 +14,7 @@ const cor_passport = require("passport");
 const generateAuthToken = require('./utils');
 const User = require('../models/user');
 const mongoose = require('mongoose');
-const userInfo = require('../passport');
 router.get("/login/success", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(userInfo);
     if (req.user) {
         res.status(200).json({
             error: false,
@@ -49,7 +47,7 @@ router.get("/login/failed", (req, res) => {
 });
 router.get("/google", cor_passport.authenticate("google", ["profile", "email"]));
 router.get("/google/callback", cor_passport.authenticate("google", {
-    successRedirect: process.env.CLIENT_URL,
+    successRedirect: process.env.URL,
     failureRedirect: "/login/failed",
 }));
 router.get("/logout", (req, res) => {
