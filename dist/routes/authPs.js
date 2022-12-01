@@ -14,36 +14,32 @@ const cor_passport = require("passport");
 const generateAuthToken = require('./utils');
 const User = require('../models/user');
 const mongoose = require('mongoose');
+const userInfo = require('../passport');
 router.get("/login/success", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    if (req.user === undefined)
-        return res.status(200).json({
+    console.log(userInfo);
+    if (req.user) {
+        res.status(200).json({
             error: false,
             message: "Successfully Loged In",
-            user: req,
+            user: req.user,
             token: generateAuthToken()
         });
-    // if (req.user) {
-    // 	res.status(200).json({
-    // 		error: false,
-    // 		message: "Successfully Loged In",
-    // 		user: req.user,
-    // 		token: generateAuthToken()
-    // 	});
-    //     console.log(req.user._json)
-    //     const user = await User.findOne({email: req.user._json.email})
-    //     if(!user){
-    //         console.log('entre')
-    //         await new User({
-    //             firstName: req.user._json.firstName || req.user._json.given_name,
-    //             lastName: req.user._json.lastName || req.user._json.family_name,
-    //             email:req.user._json.email
-    //         }).save()
-    //         console.log('creado')
-    //     }
-    //     console.log('opa')
-    // } else {
-    // 	res.status(403).json({ error: true, message: "Not Authorized" });
-    // }
+        console.log(req.user._json);
+        const user = yield User.findOne({ email: req.user._json.email });
+        if (!user) {
+            console.log('entre');
+            yield new User({
+                firstName: req.user._json.firstName || req.user._json.given_name,
+                lastName: req.user._json.lastName || req.user._json.family_name,
+                email: req.user._json.email
+            }).save();
+            console.log('creado');
+        }
+        console.log('opa');
+    }
+    else {
+        res.status(403).json({ error: true, message: "Not Authorized" });
+    }
 }));
 router.get("/login/failed", (req, res) => {
     res.status(401).json({

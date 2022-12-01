@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const co_passport = require("passport");
+let user;
 co_passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
@@ -18,6 +19,7 @@ co_passport.use(new GoogleStrategy({
 }, function (accessToken, refreshToken, profile, callback) {
     return __awaiter(this, void 0, void 0, function* () {
         yield callback(null, profile);
+        user = profile;
     });
 }));
 co_passport.serializeUser((user, done) => __awaiter(void 0, void 0, void 0, function* () {
@@ -26,3 +28,4 @@ co_passport.serializeUser((user, done) => __awaiter(void 0, void 0, void 0, func
 co_passport.deserializeUser((user, done) => __awaiter(void 0, void 0, void 0, function* () {
     yield done(null, user);
 }));
+module.exports = user;

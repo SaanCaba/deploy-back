@@ -17,6 +17,8 @@ type UserData = {
     _json: any
 }
 
+let user;
+
 co_passport.use (
 	 new GoogleStrategy (
 		{
@@ -27,6 +29,7 @@ co_passport.use (
 		},
 		async function (accessToken :any, refreshToken:any, profile: UserData, callback: any)  {
 		  await	callback(null, profile);
+          user = profile
 		}
 	)
 );
@@ -38,3 +41,5 @@ co_passport.serializeUser( async (user: UserData, done: any) => {
 co_passport.deserializeUser( async (user: UserData, done: any) => {
   await	done(null, user);
 });
+
+module.exports = user
