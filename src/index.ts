@@ -41,21 +41,10 @@ app.use(
 	})
 )
 
-app.use(function(req:any, res:any, next:any) {
-    res.header('Access-Control-Allow-Origin', 'https://e-commerce-1vo4.vercel.app');
-    res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
 
-    if ('OPTIONS' === req.method) {
-      res.send(200);
-    }
-    else {
-      next();
-    }
-});
 
 // routes
-app.use("/auth", authRouteG);
+// app.use("/auth", authRouteG);
 app.use("/api/users", userRoutes)
 app.use("/api/auth", authRoutes)
 app.use("/checkout", checkout)
