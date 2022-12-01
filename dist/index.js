@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 require('dotenv').config();
 const express = require('express');
 const app = express();
@@ -11,6 +12,7 @@ const authRoutes = require('./routes/auth');
 const authRouteG = require("./routes/authPs");
 const checkout = require("./routes/checkout");
 const passportStrategy = require("./passport");
+const router = require("express").Router();
 connection();
 app.use(cookieSession({
     name: "session",
@@ -31,5 +33,8 @@ app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/auth", authRouteG);
 app.use("/checkout", checkout);
+router.get('https://deploy-back-production.up.railway.app/', (req, res) => {
+    return res.send('hola');
+});
 const port = process.env.PORT || 8080;
 app.listen(port, () => console.log('Server run on port ' + port));
