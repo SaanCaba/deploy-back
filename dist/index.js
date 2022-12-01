@@ -33,7 +33,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/auth", authRouteG);
 app.use("/checkout", checkout);
-router.get('https://deploy-back-production.up.railway.app/', (req, res) => {
+router.get('/', (req, res) => {
     return res.send('hola');
 });
 const port = process.env.PORT || 8080;

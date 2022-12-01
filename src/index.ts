@@ -49,7 +49,7 @@ app.use("/api/auth", authRoutes)
 app.use("/auth", authRouteG);
 app.use("/checkout", checkout)
 
-router.get('https://deploy-back-production.up.railway.app/', (req: Request,res: Response) => {
+router.get('/', (req: Request,res: Response) => {
 	return res.send('hola')
 })
 
