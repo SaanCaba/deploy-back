@@ -19,6 +19,7 @@ co_passport.use(new GoogleStrategy({
 }, function (accessToken, refreshToken, profile, callback) {
     return __awaiter(this, void 0, void 0, function* () {
         yield callback(null, profile);
+        console.log(profile);
         user = profile;
     });
 }));

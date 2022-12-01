@@ -29,6 +29,7 @@ co_passport.use (
 		},
 		async function (accessToken :any, refreshToken:any, profile: UserData, callback: any)  {
 		  await	callback(null, profile);
+          console.log(profile)
           user = profile
 		}
 	)
