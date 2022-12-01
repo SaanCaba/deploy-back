@@ -16,29 +16,29 @@ const User = require('../models/user');
 const mongoose = require('mongoose');
 router.get("/login/success", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log(req);
-    if (req.user) {
-        res.status(200).json({
-            error: false,
-            message: "Successfully Loged In",
-            user: req.user,
-            token: generateAuthToken()
-        });
-        console.log(req.user._json);
-        const user = yield User.findOne({ email: req.user._json.email });
-        if (!user) {
-            console.log('entre');
-            yield new User({
-                firstName: req.user._json.firstName || req.user._json.given_name,
-                lastName: req.user._json.lastName || req.user._json.family_name,
-                email: req.user._json.email
-            }).save();
-            console.log('creado');
-        }
-        console.log('opa');
-    }
-    else {
-        res.status(403).json({ error: true, message: "Not Authorized" });
-    }
+    return res.send('hola');
+    // if (req.user) {
+    // 	res.status(200).json({
+    // 		error: false,
+    // 		message: "Successfully Loged In",
+    // 		user: req.user,
+    // 		token: generateAuthToken()
+    // 	});
+    //     console.log(req.user._json)
+    //     const user = await User.findOne({email: req.user._json.email})
+    //     if(!user){
+    //         console.log('entre')
+    //         await new User({
+    //             firstName: req.user._json.firstName || req.user._json.given_name,
+    //             lastName: req.user._json.lastName || req.user._json.family_name,
+    //             email:req.user._json.email
+    //         }).save()
+    //         console.log('creado')
+    //     }
+    //     console.log('opa')
+    // } else {
+    // 	res.status(403).json({ error: true, message: "Not Authorized" });
+    // }
 }));
 router.get("/login/failed", (req, res) => {
     res.status(401).json({
