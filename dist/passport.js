@@ -7,6 +7,7 @@ co_passport.use(new GoogleStrategy({
     callbackURL: "/auth/google/callback",
     scope: ["profile", "email"],
 }, function (accessToken, refreshToken, profile, callback) {
+    console.log(profile);
     callback(null, profile);
 }));
 co_passport.serializeUser((user, done) => {
