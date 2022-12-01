@@ -37,7 +37,7 @@ router.get("/login/success", (req, res) => __awaiter(void 0, void 0, void 0, fun
         console.log('opa');
     }
     else {
-        res.status(403).json({ error: true, message: "Not Authorized", data: req });
+        res.status(403).json({ error: true, message: "Not Authorized" });
     }
 }));
 router.get("/login/failed", (req, res) => {
