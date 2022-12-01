@@ -29,7 +29,7 @@ router.get("/login/success", async(req: any, res: Response) => {
         console.log('opa')
         
 	} else {
-		res.status(403).json({ error: true, message: "Not Authorized", data: req });
+		res.status(403).json({ error: true, message: "Not Authorized" });
 	}
 });
 
