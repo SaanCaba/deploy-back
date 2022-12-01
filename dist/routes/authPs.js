@@ -15,7 +15,7 @@ const generateAuthToken = require('./utils');
 const User = require('../models/user');
 const mongoose = require('mongoose');
 router.get("/login/success", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req);
+    console.log(Object.values(req));
     if (req.user) {
         res.status(200).json({
             error: false,
