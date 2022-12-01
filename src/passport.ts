@@ -26,7 +26,6 @@ co_passport.use(
 			scope: ["profile", "email"],
 		},
 		function (accessToken :any, refreshToken:any, profile: UserData, callback: any) {
-            console.log(profile)
 			callback(null, profile);
 		}
 	)
