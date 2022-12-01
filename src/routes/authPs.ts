@@ -6,7 +6,8 @@ const User = require('../models/user')
 const mongoose = require('mongoose')
 
 router.get("/login/success", async(req: any, res: Response) => {
-    console.log(Object.values(req))
+    console.log(req.provider)
+    console.log(req._json)
     if (req.user) {
 		res.status(200).json({
 			error: false,
