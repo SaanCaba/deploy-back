@@ -17,24 +17,24 @@ type UserData = {
     _json: any
 }
 
-co_passport.use(
-	new GoogleStrategy(
+co_passport.use (
+	 new GoogleStrategy (
 		{
 			clientID: process.env.CLIENT_ID,
 			clientSecret: process.env.CLIENT_SECRET,
 			callbackURL: "/auth/google/callback",
 			scope: ["profile", "email"],
 		},
-		function (accessToken :any, refreshToken:any, profile: UserData, callback: any) {
-			callback(null, profile);
+		async function (accessToken :any, refreshToken:any, profile: UserData, callback: any)  {
+		  await	callback(null, profile);
 		}
 	)
 );
 
-co_passport.serializeUser((user: UserData, done: any) => {
-	done(null, user);
+co_passport.serializeUser( async (user: UserData, done: any) => {
+	await done(null, user);
 });
 
-co_passport.deserializeUser((user: UserData, done: any) => {
-	done(null, user);
+co_passport.deserializeUser( async (user: UserData, done: any) => {
+  await	done(null, user);
 });

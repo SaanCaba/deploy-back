@@ -15,7 +15,6 @@ const generateAuthToken = require('./utils');
 const User = require('../models/user');
 const mongoose = require('mongoose');
 router.get("/login/success", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req);
     if (req.user) {
         res.status(200).json({
             error: false,
@@ -37,7 +36,7 @@ router.get("/login/success", (req, res) => __awaiter(void 0, void 0, void 0, fun
         console.log('opa');
     }
     else {
-        res.status(403).json({ error: true, message: "Not Authorized" });
+        res.status(403).json({ error: true, message: "Not Authorized", data: req });
     }
 }));
 router.get("/login/failed", (req, res) => {

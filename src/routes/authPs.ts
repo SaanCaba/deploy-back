@@ -6,7 +6,6 @@ const User = require('../models/user')
 const mongoose = require('mongoose')
 
 router.get("/login/success", async(req: any, res: Response) => {
-    console.log(req)
     if (req.user) {
 		res.status(200).json({
 			error: false,
@@ -30,7 +29,7 @@ router.get("/login/success", async(req: any, res: Response) => {
         console.log('opa')
         
 	} else {
-		res.status(403).json({ error: true, message: "Not Authorized" });
+		res.status(403).json({ error: true, message: "Not Authorized", data: req });
 	}
 });
 
