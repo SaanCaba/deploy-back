@@ -48,13 +48,13 @@ router.get("/login/failed", (req, res) => {
 });
 router.get("/google", cor_passport.authenticate("google", ["profile", "email"]));
 router.get("/google/callback", cor_passport.authenticate("google", {
-    successRedirect: process.env.CLIENT_URL,
+    successRedirect: process.env.URL,
     failureRedirect: "/login/failed",
 }));
 router.get("/logout", (req, res) => {
     req.logout();
-    if (process.env.CLIENT_URL) {
-        res.redirect(process.env.CLIENT_URL);
+    if (process.env.URL) {
+        res.redirect(process.env.URL);
     }
 });
 module.exports = router;
