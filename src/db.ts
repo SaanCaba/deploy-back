@@ -8,8 +8,7 @@ module.exports = () => {
         useUnifiedTopology:true,
     };
     try {
-        console.log('pepe')
-        mongoose.set('strictQuery', true);
+        mongoose.set("strictQuery", false);
         mongoose.connect(process.env.DB, connectionsParams)
         console.log('connected to database')
     } catch (error) {
