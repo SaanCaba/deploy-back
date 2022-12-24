@@ -34,4 +34,4 @@ app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/checkout", checkout);
 const port = process.env.PORT || 8080;
-app.listen(port, () => console.log('Server run on port esooo' + port));
+app.listen(port, () => console.log('Server run on port esooo' + port + +' ' + process.env.URL));

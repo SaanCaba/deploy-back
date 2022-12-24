@@ -1,4 +1,4 @@
-const moongoose = require('mongoose')
+const mongoose = require('mongoose')
 
 //d
 
@@ -8,7 +8,9 @@ module.exports = () => {
         useUnifiedTopology:true,
     };
     try {
-        moongoose.connect(process.env.DB, connectionsParams)
+        console.log('pepe')
+        mongoose.set('strictQuery', true);
+        mongoose.connect(process.env.DB, connectionsParams)
         console.log('connected to database')
     } catch (error) {
         console.log(error)
